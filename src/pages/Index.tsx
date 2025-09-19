@@ -4,9 +4,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import Icon from '@/components/ui/icon'
+import Cart from '@/components/Cart'
+import { useCart } from '@/hooks/useCart'
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState('catalog')
+  const { cartItems, addToCart, updateQuantity, removeFromCart, clearCart } = useCart()
 
   const candyProducts = [
     {
@@ -118,7 +121,10 @@ export default function Index() {
                 <p className="text-2xl font-bold text-primary mb-4">{product.price} ₽</p>
               </CardContent>
               <CardFooter className="p-6 pt-0">
-                <Button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 transition-all duration-300">
+                <Button 
+                  onClick={() => addToCart(product)}
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 transition-all duration-300"
+                >
                   <Icon name="ShoppingCart" size={20} className="mr-2" />
                   В корзину
                 </Button>
@@ -343,9 +349,12 @@ export default function Index() {
             </nav>
 
             <div className="flex items-center space-x-4">
-              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-white">
-                <Icon name="ShoppingCart" size={20} />
-              </Button>
+              <Cart 
+                items={cartItems}
+                onUpdateQuantity={updateQuantity}
+                onRemoveItem={removeFromCart}
+                onClearCart={clearCart}
+              />
               <Button variant="outline" size="sm" className="border-secondary text-secondary hover:bg-secondary hover:text-white md:hidden">
                 <Icon name="Menu" size={20} />
               </Button>
