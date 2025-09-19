@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import Icon from '@/components/ui/icon'
+import OrderForm from './OrderForm'
 
 export interface CartItem {
   id: number
@@ -167,16 +168,15 @@ export default function Cart({ items, onUpdateQuantity, onRemoveItem, onClearCar
                 <span>Итого:</span>
                 <span className="text-primary">{totalAmount} ₽</span>
               </div>
-              <Button 
-                className="w-full bg-primary hover:bg-primary/90 text-white py-3 text-lg font-semibold"
-                onClick={() => {
-                  // Здесь будет логика оформления заказа
-                  alert('Функция оформления заказа будет добавлена позже!')
+              <OrderForm 
+                cartItems={items}
+                totalAmount={totalAmount}
+                onOrderSubmit={(orderData) => {
+                  console.log('Заказ оформлен:', orderData)
+                  alert(`Спасибо за заказ, ${orderData.customerInfo.name}! Мы свяжемся с вами в ближайшее время.`)
+                  onClearCart()
                 }}
-              >
-                <Icon name="CreditCard" size={20} className="mr-2" />
-                Оформить заказ
-              </Button>
+              />
               <p className="text-xs text-gray-500 text-center">
                 Бесплатная доставка при заказе от 2000 ₽
               </p>

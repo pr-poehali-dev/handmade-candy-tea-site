@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import Icon from '@/components/ui/icon'
 import Cart from '@/components/Cart'
 import { useCart } from '@/hooks/useCart'
+import Logo from '@/components/Logo'
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState('catalog')
@@ -306,16 +307,7 @@ export default function Index() {
       <header className="bg-white shadow-md sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-10 flex items-center justify-center">
-                <img 
-                  src="https://cdn.poehali.dev/files/a3759ed5-3f1c-401f-a9b4-3d89afb94b04.jpeg" 
-                  alt="Карамельный чай логотип"
-                  className="h-10 w-auto object-contain"
-                />
-              </div>
-              <span className="text-2xl font-bold text-gray-800">Карамельный чай</span>
-            </div>
+            <Logo size="md" showText={true} />
             
             <nav className="hidden md:flex space-x-8">
               <button 
@@ -401,15 +393,8 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-8 flex items-center justify-center">
-                  <img 
-                    src="https://cdn.poehali.dev/files/a3759ed5-3f1c-401f-a9b4-3d89afb94b04.jpeg" 
-                    alt="Карамельный чай логотип"
-                    className="h-8 w-auto object-contain"
-                  />
-                </div>
-                <span className="text-xl font-bold">Карамельный чай</span>
+              <div className="mb-4">
+                <Logo size="sm" showText={true} />
               </div>
               <p className="text-gray-400">Карамель ручной работы прямо в магазине и премиальный чай с доставкой по всей России</p>
             </div>
